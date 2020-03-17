@@ -6,7 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class IntegerSelection extends JTextArea {
+//makes the structure on the text box with the up and down arrows
+
+public class IntegerSelection extends JTextArea {//this handles the x,y,z
 
     private int num, x, y, width, height;
     BasicArrowButton up, down;
@@ -26,6 +28,10 @@ public class IntegerSelection extends JTextArea {
         Font font = new Font("SansSerif", Font.PLAIN, 20);
         setFont(font);
     }
+//for storing the information in each one
+    public int getNum() {
+        return num;
+    }
 
     private void addButtons() {
         up = new BasicArrowButton(BasicArrowButton.NORTH);
@@ -36,7 +42,7 @@ public class IntegerSelection extends JTextArea {
         down.setBounds(x+width, y+(height/2), height/2, height/2);
 
         up.addActionListener(new ActionListener() {
-            @Override
+            @Override//for when the up or down buttons are pressed
             public void actionPerformed(ActionEvent e) {
                 num++;
                 setText(Integer.toString(num));
@@ -52,14 +58,14 @@ public class IntegerSelection extends JTextArea {
         });
     }
 
-    public void checkForString() {
+    public void checkForString() {//reads the string in the text box to ensure it is a number
         if(getText().length() > 0) {
             if(!getText().matches("-?\\d+")) setText(Integer.toString(num));
             else num = Integer.parseInt(getText());
         }
     }
 
-    public void addItems(JFrame f) {
+    public void addItems(JFrame f) {//adds the text box buttons
         f.add(this);
         f.add(up);
         f.add(down);
